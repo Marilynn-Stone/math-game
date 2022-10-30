@@ -14,13 +14,7 @@ Roles
         - create player states (input)
         - loop through turns until one player has 0 points
 
-  Player
-    This will store player information: name, score
-      Variables
-        - name
-        - score
-
-  Turn
+      
     This will be where info about each turn is generated. It will keep track of which player is going, what the question is, checking if it is answered correctly, and generating a response.
       Variables
         - current_player
@@ -30,6 +24,12 @@ Roles
         - manage current_player
         - generate question (output) and receive answer (input)
         - check answer is correct and provide feedback (output)
+
+  Player
+    This will store player information: name, score
+      Variables
+        - name
+        - score
 
   Questions
     This will store the information related to questions. It will also be responsible for generating the questions.
