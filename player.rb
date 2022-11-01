@@ -1,13 +1,16 @@
 class Player
+  attr_accessor :lives
   attr_reader :name
-  attr_accessor :score
 
-  def initialize(name, score=3)
-    @name = name
-    @score = score
+  def initialize(num)
+    @name = "Player #{num.to_s}"
+    @lives = 3
   end
 
-  
+  def lose_life
+    @lives -= 1
+  end
+
+  @player_toggle == !@player_toggle
 
 end
-

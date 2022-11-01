@@ -1,12 +1,11 @@
 Nouns
 - player
 - questions
-- turn
 - game
 
 Roles
   Game
-    This will start the game. It will keep track of turns. It will track the score and determine when the game is over.
+    This will create a new game. It will keep track of turns. It will track the score and determine when the game is over.
       Variables
         - game score
         - game loop
