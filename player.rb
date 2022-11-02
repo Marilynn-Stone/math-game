@@ -1,4 +1,4 @@
-class Player
+class Player 
   attr_accessor :lives
   attr_reader :name
 
@@ -8,9 +8,6 @@ class Player
   end
 
   def lose_life
-    @lives -= 1
+    lives -= 1
   end
-
-  @player_toggle == !@player_toggle
-
 end
