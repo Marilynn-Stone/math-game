@@ -1,5 +1,3 @@
-require_relative 'player'
-
 class Question
   attr_accessor :num1, :num2, :answer
 
