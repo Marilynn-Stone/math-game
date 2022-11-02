@@ -15,7 +15,6 @@ class Game
     puts "Each player starts with 3 lives. Answer incorrectly and lose a life."
     puts "The game is over when one player loses all 3 lives."
     puts "Good Luck!"
-    puts
     new_turn
   end
 
@@ -33,18 +32,30 @@ class Game
     question = Question.new
     if @current_player == @player1
       print "Player 1: "
-      puts question.prompt
+      @response = question.prompt
+      @answer = question.answer
+      reply
+      check_answer
       score
     else
       print "Player 2: "
-      puts question.prompt
+      @response = question.prompt
+      @answer = question.answer
+      reply
+      check_answer
       score
     end
   end
+ 
+  def check_answer
+    if @answer != @response
+      @current_player.lives -= 1
+    end
+  end
 
-  def lose_life
-    puts @player1.lives.inspect
-    @current_player.lives -= 1
+  #Depending on player input, output a reply.
+  def reply
+    puts @answer == @response  ? "Excellent! You are correct." : "Nope! That is wrong."
   end
 
   def score
@@ -55,7 +66,7 @@ class Game
       puts "Player 1 wins with a score of #{@player1.lives}/3"
       puts "Game Over. Thanks for playing."
     else
-      puts "Player 1: #{@player1.lives}/3 vs Player 2: #{@player1.lives}/3"
+      puts "Player 1: #{@player1.lives}/3 vs Player 2: #{@player2.lives}/3"
       puts "New Turn"
       new_turn
     end

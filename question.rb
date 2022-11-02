@@ -1,3 +1,5 @@
+require_relative 'player'
+
 class Question
   attr_accessor :num1, :num2, :answer
 
@@ -18,20 +20,7 @@ class Question
   # Prompt players to answer question.
   def prompt
     puts "What does #{@num1} plus #{@num2} equal?"
-    @response = gets.chomp.to_i
-  end
-
-  def check_answer
-    if @answer == @response
-      true
-    else
-      player.lose_life
-    end
-  end
-
-  #Depending on player input, output a reply.
-  def reply
-    puts check_answer ? "Excellent! You are correct." : "Nope! That is wrong."
+    @response = gets.chomp.to_i 
   end
 
 end
