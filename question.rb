@@ -12,8 +12,8 @@ class Question
   end
 
   # Prompt players to answer question.
-  def prompt
-    puts "What does #{@num1} plus #{@num2} equal?"
+  def prompt(player_name)
+    puts "#{player_name}: What does #{@num1} plus #{@num2} equal?"
     @response = gets.chomp.to_i 
   end
 

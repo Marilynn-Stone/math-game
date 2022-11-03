@@ -5,7 +5,6 @@ class Game
   def initialize
     @player1 = Player.new(1)
     @player2 = Player.new(2)
-    @toggle = 0
     @current_player
   end
 
@@ -21,35 +20,15 @@ class Game
     new_turn
   end
 
-  # Alternate players each turn.
-  def player_toggle
-    if @toggle % 2 == 0 
-      @current_player = @player2
-    else 
-      @current_player = @player1
-    end
-  end
-
   # Toggle between players. Create new question for current player. Store player response and question answer. Check if answer is correct. Update score.
   def new_turn
-    @toggle += 1
-    player_toggle
+    switch_player
     question = Question.new
-    if @current_player == @player1
-      print "Player 1: "
-      @response = question.prompt
-      @answer = question.answer
-      reply
-      check_answer
-      score
-    else
-      print "Player 2: "
-      @response = question.prompt
-      @answer = question.answer
-      reply
-      check_answer
-      score
-    end
+    @response = question.prompt(@current_player.name)
+    @answer = question.answer
+    reply
+    check_answer
+    score   
   end
  
   # If response does not match answer, deduct one life.
@@ -65,23 +44,27 @@ class Game
     puts
   end
 
-  # Track score. If one player loses all lives, end game.
-  # If not begin new turn.
-  def score
-    if @player1.lives == 0  
-      puts "Player 2 wins with a score of #{@player2.lives}/3"
-      puts
-      puts "Game Over. Thanks for playing."
-    elsif @player2.lives == 0
-      puts "Player 1 wins with a score of #{@player1.lives}/3"
-      puts
-      puts "Game Over. Thanks for playing."
-    else
-      puts "Player 1: #{@player1.lives}/3 vs Player 2: #{@player2.lives}/3"
-      puts
-      puts "---New Turn---"
-      new_turn
+  #Alternate players each turn.
+  def switch_player
+    if @current_player == @player1
+      @current_player = @player2
+    else 
+      @current_player = @player1
     end
   end
 
+  # Track score. If one player loses all lives, end game.
+  # If not begin new turn.
+  def score
+    puts "Player 1: #{@player1.lives}/3 vs Player 2: #{@player2.lives}/3"
+    if @current_player.lives == 0
+      switch_player
+      puts "#{@current_player.name} wins with a score of #{@current_player.lives}/3"
+      puts
+      puts "Game Over. Thanks for playing."
+    else
+      new_turn
+    end
+  end
+  
 end
