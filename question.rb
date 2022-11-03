@@ -4,15 +4,11 @@ class Question
   def initialize
     @num1 = random_num
     @num2 = random_num
-    @answer = generate_answer
+    @answer = @num1 + @num2
   end
 
   def random_num
     rand 1...20
-  end
-
-  def generate_answer
-    @num1 + @num2
   end
 
   # Prompt players to answer question.
